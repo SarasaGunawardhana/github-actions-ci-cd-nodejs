@@ -1,0 +1,23 @@
+{
+  "name": "github-actions-ci-cd-nodejs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "sever.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SarasaGunawardhana/github-actions-ci-cd-nodejs.git"
+  },
+  "author": "sarasa gunawardhana",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SarasaGunawardhana/github-actions-ci-cd-nodejs/issues"
+  },
+  "homepage": "https://github.com/SarasaGunawardhana/github-actions-ci-cd-nodejs#readme",
+  "dependencies": {
+    "express": "^4.17.2"
+  }
+}
