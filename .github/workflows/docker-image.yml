@@ -11,8 +11,20 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
-
+    env:
+      region: ${{ secrets.APPLICATION_REGION }}
     steps:
+    - name: Configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: ${{ secrets.APPLICATION_REGION }}
+
+    - name: Login to Amazon ECR
+      id: login-ecr
+      uses: aws-actions/amazon-ecr-login@v1
+      
     - uses: actions/checkout@v2
     - name: Build the Docker image
       run: docker build -t github-actions-ci-cd-nodejs:$(date +%s) .
