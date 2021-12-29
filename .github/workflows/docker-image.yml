@@ -36,6 +36,6 @@ jobs:
         docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$(date +%s) .
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:$(date +%s)
         
-    - name: Logout of Amazon ECR
+    - name: Logout from Amazon ECR
       if: always()
       run: docker logout ${{ steps.login-ecr.outputs.registry }}
