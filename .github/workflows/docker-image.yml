@@ -2,9 +2,15 @@ name: Docker Image CI
 
 on:
   push:
-    branches: [ main ]
+    branches: 
+      - main
+      - 'development'
+      - '!releases/**' # will not run on release branches
   pull_request:
-    branches: [ main ]
+    branches: 
+      - main
+      - 'development'
+      - '!releases/**'
 
 jobs:
 
@@ -16,6 +22,18 @@ jobs:
     steps:
     - name: Checkout source code
       uses: actions/checkout@v1
+
+    # Install Node 14 
+    - name: Setup Node and run Test
+      uses: actions/setup-node@v1
+      with:
+        node-version: 14
+
+    # Install dependencies
+    - run: npm install
+
+    # Run tests
+    - run: npm test
       
     - name: Configure AWS credentials
       uses: aws-actions/configure-aws-credentials@v1
@@ -27,12 +45,19 @@ jobs:
     - name: Login to Amazon ECR
       id: login-ecr
       uses: aws-actions/amazon-ecr-login@v1
+
+    - name: Generate main build number
+      id: buildnumbermain
+      uses: einaregilsson/build-number@v3
+      with:
+        token: ${{ secrets.GIT_TOKEN }}
+        prefix: ${{ secrets.MAIN_APP_PREFIX }}
       
     - name: Build, tag, and push main image to Amazon ECR
       env:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
         ECR_REPOSITORY: ${{ secrets.ECR_REPOSITORY }}
-        IMAGE_TAG: latest
+        IMAGE_TAG: ${{ steps.buildnumbermain.outputs.build_number }}
       run: |
         docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
@@ -40,3 +65,23 @@ jobs:
     - name: Logout from Amazon ECR
       if: always()
       run: docker logout ${{ steps.login-ecr.outputs.registry }}
+
+    - name: Report Status
+      if: always()
+      uses: ravsamhq/notify-slack-action@master
+      with:
+        status: ${{ job.status }}
+        notify_when: 'failure'
+      env:
+        SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+
+    - name: Report Status
+      if: always()
+      uses: ravsamhq/notify-slack-action@master
+      with:
+        status: ${{ job.status }}
+        notify_when: 'failure'
+        notification_title: 'GitHub Actions'
+        footer: 'Linked to Repo <{repo_url}|{repo}>'
+      env:
+        SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
