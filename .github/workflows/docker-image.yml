@@ -5,7 +5,7 @@ on:
     branches: 
       - main
       - 'development'
-      
+
   pull_request:
     branches: 
       - main
@@ -33,6 +33,11 @@ jobs:
 
     # Run tests
     - run: npm test
+
+    - uses: ArtiomTr/jest-coverage-report-action@v2.0-rc.6
+      with:
+          github-token: ${{ secrets.GIT_TOKEN }}
+          test-script: npm run coverage
       
     - name: Configure AWS credentials
       uses: aws-actions/configure-aws-credentials@v1
