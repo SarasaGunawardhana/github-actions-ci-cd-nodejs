@@ -3,21 +3,23 @@ const request = require("supertest");
 
 const app = require("../server");
 
-
-
-describe('Bank-> Routes', () => {
-
-  describe('GET: /api/users/', () => {
-
-    it('Retrieved users', async () => {
-
-      await request(app)
-        .get('/api/users/?api-key=martel')
-        .expect(200).toEqual(200)
-        .end(done);
+describe("Route > Users", () => {
+  describe("GET: /api/users/", () => {
+    it("Retrieved users", async () => {
+      return await request(app).get("/api/users/?api-key=martel").expect(200);
     });
   });
 });
+
+describe("Route > Repos", () => {
+  describe("GET: /api/repos/", () => {
+    it("Retrieved users", async () => {
+      return await request(app).get("/api/repos/?api-key=martel").expect(200);
+    });
+  });
+});
+
+
 // describe('Sample Test for APIs', () => {
 //     it('should test that true === true', () => {
 //       expect(true).toBe(true)

@@ -5,12 +5,11 @@ on:
     branches: 
       - main
       - 'development'
-      - '!releases/**' # will not run on release branches
+      
   pull_request:
     branches: 
       - main
       - 'development'
-      - '!releases/**'
 
 jobs:
 
