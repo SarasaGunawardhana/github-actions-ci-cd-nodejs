@@ -35,7 +35,7 @@ jobs:
     - run: npm test
 
     - name: Code Coverage and Publish
-    - run: npm run coverage
+      run: npm run coverage
       
     - name: Configure AWS credentials
       uses: aws-actions/configure-aws-credentials@v1
