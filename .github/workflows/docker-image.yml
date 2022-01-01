@@ -36,6 +36,11 @@ jobs:
 
     - name: Code Coverage and Publish
       run: npm run coverage
+
+    - name: Upload coverage to Codecov
+      uses: codecov/codecov-action@v1
+      with:
+          token: ${{ secrets.GIT_TOKEN }}
       
     - name: Configure AWS credentials
       uses: aws-actions/configure-aws-credentials@v1

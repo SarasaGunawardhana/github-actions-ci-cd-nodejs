@@ -14,7 +14,7 @@
       "/node_modules/"
     ],
     "collectCoverage": true,
-    "coverageReporters": ["json", "html"]
+    "coverageReporters": ["clover", "json", "lcov", ["text", {"skipFull": true}]]
   },
   "repository": {
     "type": "git",
