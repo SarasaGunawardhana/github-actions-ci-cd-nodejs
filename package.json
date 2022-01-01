@@ -4,8 +4,17 @@
   "description": "",
   "main": "sever.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\"",
+    "test": "jest --forceExit --testTimeout=10000",
+    "coverage": "jest --all --coverage --forceExit -testTimeout=10000",
     "start": "node server.js"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "coveragePathIgnorePatterns": [
+      "/node_modules/"
+    ],
+    "collectCoverage": true,
+    "coverageReporters": ["clover", "json", "lcov", ["text", {"skipFull": true}]]
   },
   "repository": {
     "type": "git",
@@ -19,5 +28,10 @@
   "homepage": "https://github.com/SarasaGunawardhana/github-actions-ci-cd-nodejs#readme",
   "dependencies": {
     "express": "^4.17.2"
+  },
+  "devDependencies": {
+    "cross-env": "^7.0.3",
+    "jest": "^27.4.5",
+    "supertest": "^6.1.6"
   }
 }
