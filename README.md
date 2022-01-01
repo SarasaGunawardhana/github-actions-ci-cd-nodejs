@@ -20,6 +20,7 @@ A library for testing Node.js HTTP servers. It enables us to programmatically se
 
 `npm install --save-dev jest supertest`
 
+[![codecov](https://codecov.io/gh/SarasaGunawardhana/github-actions-ci-cd-nodejs/branch/development/graph/badge.svg?token=H5LANOBRH6)](https://codecov.io/gh/nibble0101/learn-test-coverage)
 
 -----------------------------------------------
 
