@@ -107,9 +107,15 @@
    res.status(404);
    res.send({ error: "Sorry, can't find that" })
  });
+
+ module.exports = app;
  
- /* istanbul ignore next */
- if (!module.parent) {
-   app.listen(3000);
-   console.log('Express started on port 3000');
- }
+const onListeningLog = `
+  server is running on port : 3000 !!!`;
+
+const onListening = () => console.log(onListeningLog);
+
+app.listen(3000, onListening());
+
+module.exports = app;
+ 
