@@ -1,5 +1,5 @@
 
-[![codecov](https://codecov.io/gh/SarasaGunawardhana/github-actions-ci-cd-nodejs/branch/master/graph/badge.svg?token=H5LANOBRH6)](https://codecov.io/gh/SarasaGunawardhana/github-actions-ci-cd-nodejs)
+[![codecov](https://codecov.io/gh/SarasaGunawardhana/github-actions-ci-cd-nodejs/branch/main/graph/badge.svg?token=H5LANOBRH6)](https://codecov.io/gh/SarasaGunawardhana/github-actions-ci-cd-nodejs)
 
 # github-actions-ci-cd-nodejs
 
