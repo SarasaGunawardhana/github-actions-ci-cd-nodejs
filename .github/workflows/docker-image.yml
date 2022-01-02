@@ -27,7 +27,8 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
   build:
-
+    #Depends on test's job
+    needs: sonarcloud
     runs-on: ubuntu-latest
     env:
       region: ${{ secrets.AWS_REGION }}
