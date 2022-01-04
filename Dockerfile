@@ -15,7 +15,7 @@ RUN npm install
 # Bundle app source
 COPY . .
 
-EXPOSE 4006
+EXPOSE 3000
 
 ## Launch the wait tool and then your application
 CMD npm start
