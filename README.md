@@ -3,10 +3,6 @@
 
 # github-actions-ci-cd-nodejs
 
-# install dependencies
-npm install
-
-
 
 # Explain Packages installed
 
@@ -28,3 +24,31 @@ A library for testing Node.js HTTP servers. It enables us to programmatically se
 -----------------------------------------------
 
 https://jestjs.io/docs/configuration
+
+
+
+--------------------------------
+
+# Run Software
+
+###### install dependencies
+> npm install
+
+###### run locally
+> npm run start
+
+###### run tests
+> npm run test
+
+###### run code coverage
+> npm run coverage
+
+###### if you want to run in docker
+make sure that you have installed docker and docker-compose
+then just run 
+> docker-compose up (build and start the service)
+
+> docker-compose down (stop the service)
+
+> docker-compose up --force-recreate --build -d (if you have changed the code and if you want to re-run the service without stopping, you can run this command)
+
